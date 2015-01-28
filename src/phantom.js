@@ -51,6 +51,7 @@ function ResourceHandler(htmlroot, isWindows, resolve) {
             url = originalUrl.split('?')[0].split('#')[0];
 
         if (url.substr(-3) === '.js' && url.substr(0, 7) === 'file://') {
+            console.log('Before: ' + url);
             /* Try and match protocol-less URLs and absolute ones.
              * Relative URLs will still not load.
              */
@@ -68,6 +69,7 @@ function ResourceHandler(htmlroot, isWindows, resolve) {
                 /* Protocol-less URL */
                 url = 'http://' + originalUrl.substr(7);
             }
+            console.log('After: ' + url);
             networkRequest.changeUrl(url);
         } else if (ignoreRequests.test(url)) {
             networkRequest.abort();
